@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, Alert, Button, TextInput, View , StyleSheet, TouchableHighlight,TouchableNativeFeedback,TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
+import { Text, Image , ScrollView , Alert, Button, TextInput, View , StyleSheet, TouchableHighlight,TouchableNativeFeedback,TouchableOpacity,TouchableWithoutFeedback} from 'react-native';
 
 export default class PizzaTranslator extends Component {
   constructor(props) {
@@ -17,7 +17,8 @@ export default class PizzaTranslator extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+    	<ScrollView>
+    		<View style={styles.container}>
        
 
         <TouchableHighlight onPress={this._onPressButton} underlayColor="white">
@@ -49,8 +50,55 @@ export default class PizzaTranslator extends Component {
             <Text style={styles.buttonText}>Touchable with Long Press</Text>
           </View>
         </TouchableHighlight>
-        
+        <Text style={{fontSize:96}}>Scroll me plz</Text>
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Text style={{fontSize:96}}>If you like</Text>
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Text style={{fontSize:96}}>Scrolling down</Text>
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Text style={{fontSize:96}}>What's the best</Text>
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Text style={{fontSize:96}}>Framework around?</Text>
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Image source={{uri: "https://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+      <Text style={{fontSize:80}}>React Native</Text>
       </View>
+    	</ScrollView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     );
   }
 }
