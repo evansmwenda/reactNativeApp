@@ -13,11 +13,64 @@ import {
   StyleSheet,
   TextInput,
   Button,
-} from 'react-native'
+} from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+
+
+
+
+
 const LOGIN_API = 'https://skytoptrial.000webhostapp.com/functions/User/login2.php';
 
 
-class App3 extends Component{
+class HomeScreen extends Component{
+  static navigationOptions = {
+    header: null,
+  }
+  render(){
+    return (
+        //add code here
+        <View style={styles.container}>
+          <Text>THIS IS THE HOME SCREEN</Text>
+
+           <Button 
+            style={styles.btnForm}
+            title="GOTO DETAILS SCREEN"
+            onPress={()=> {this.props.navigation.navigate('Details')}}
+            /> 
+
+        </View>
+      
+      );
+  }
+}
+
+
+class DetailsScreen extends Component {
+  static navigationOptions = {
+    title: 'Raashin',
+    headerRight: <View />
+  }
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+        <Button 
+            style={styles.btnForm}
+            title="GOTO HOME SCREEN"
+            onPress={()=> {this.props.navigation.navigate('Home')}}
+            /> 
+        
+      </View>
+    );
+  }
+}
+
+
+
+
+type Props ={};
+class App3 extends Component<Props>{
   constructor(props){
     super(props);
     this.state={
@@ -62,31 +115,34 @@ class App3 extends Component{
   render(){
     return (
         //add code here
-        <View style={styles.container}>
-          <TextInput 
-            placeholder="Username/Email"
-            style={styles.txtInput}
-            onChangeText={userName => this.setState({userName})}
-          />
-
-          <TextInput 
-            placeholder="Password"
-            style={styles.txtInput} 
-            onChangeText={userPassword => this.setState({userPassword})}
-            />
-
-           <Button 
-            style={styles.btnForm}
-            title="Sign up"
-            onPress={this.registerUser}
-
-            /> 
-
-        </View>
+        <AppContainer/>
+        
       
       );
   }
 }
+
+const RootStack =createStackNavigator(
+  {
+    Home:HomeScreen,
+    Details:DetailsScreen
+  },
+  {
+      initialRouteName:'Home',
+      defaultNavigationOptions:{
+        headerStyle:{
+          backgroundColor:"#1e90ff"
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          textAlign:'center',
+          flex:1
+        }
+      }
+  }
+  );
+
+const AppContainer = createAppContainer(RootStack);
 
 const styles = StyleSheet.create({
   container:{
