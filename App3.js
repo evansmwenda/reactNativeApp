@@ -13,7 +13,7 @@ import {
   ImageBackground,
 } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import bgImage from './images/background5.jpeg';
+import bgImage from './images/background11.jpeg';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import LoginScreen   from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';

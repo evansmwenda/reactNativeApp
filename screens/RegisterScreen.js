@@ -5,8 +5,9 @@ import {
     ImageBackground,
     StyleSheet,
 } from 'react-native';
-import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
+import { TextInput, TouchableHighlight, ScrollView } from 'react-native-gesture-handler';
 import bgImage from '../images/background7.jpeg';
+import API from '../constants/endpoints';
 
 
 const LOGIN_API= 'https://skytoptrial.000webhostapp.com/functions/User/login2.php';
@@ -40,7 +41,7 @@ class RegisterScreen extends Component {
 
     try{
       //do fetch here
-      let response =  await fetch(LOGIN_API,{
+      let response =  await fetch(API.REGISTER_URL,{
         method:'POST',
         headers:{
           'Accept': 'application/json',
@@ -63,42 +64,49 @@ class RegisterScreen extends Component {
   render(){
     return(
       //add code here
-      <ImageBackground style={styles.backgroundContainer} source={bgImage} >
-        <View>
-          <TextInput 
-          placeholder={'Email/Username'} 
-          style={styles.txtInput}
-          onChangeText={userName => this.setState({userName})}/>
+        <ImageBackground style={styles.backgroundContainer} source={bgImage} >
+          <View>
+            <TextInput 
+            placeholder={'Email/Username'} 
+            style={styles.txtInput}
+            onChangeText={userName => this.setState({userName})}/>
 
-          <TextInput 
-          placeholder={'Phone Number'} 
-          style={styles.txtInput}
-          onChangeText={userPhoneNumber => this.setState({userPhoneNumber})}/>
+            <TextInput 
+            placeholder={'Phone Number'} 
+            style={styles.txtInput}
+            onChangeText={userPhoneNumber => this.setState({userPhoneNumber})}/>
 
-          <TextInput 
-          placeholder={'Password'} 
-          style={styles.txtInput}
-          onChangeText={userPassword => this.setState({userPassword})}/>
+            <TextInput 
+            placeholder={'Password'} 
+            style={styles.txtInput}
+            secureTextEntry={true}
+            onChangeText={userPassword => this.setState({userPassword})}/>
 
-          <TextInput 
-          placeholder={'Confirm Password'} 
-          style={styles.txtInput}
-          onChangeText={userConfirmPassword => this.setState({userConfirmPassword})}/>
+            <TextInput 
+            placeholder={'Confirm Password'} 
+            style={styles.txtInput}
+            secureTextEntry={true}
+            onChangeText={userConfirmPassword => this.setState({userConfirmPassword})}/>
 
-          <TextInput 
-          placeholder={'Delivery Address'} 
-          style={styles.txtInput}
-          onChangeText={userAddress => this.setState({userAddress})}/>
+            <TextInput 
+            placeholder={'Delivery Address'} 
+            style={styles.txtInput}
+            onChangeText={userAddress => this.setState({userAddress})}/>
 
-          <TouchableHighlight
-            style={styles.btnForm}
-            onPress={this.registerUser}
-          >
-            <Text style={styles.btnText}> REGISTER</Text>
-          </TouchableHighlight>
+            <TouchableHighlight
+              style={styles.btnForm}
+              onPress={this.registerUser}
+            >
+              <Text style={styles.btnText}> REGISTER</Text>
+            </TouchableHighlight>
 
-        </View>
-      </ImageBackground>
+            <View style={styles.signupField}>
+              <Text style={styles.registerText}>Already have an account?</Text>
+              <Text style={styles.registerButton}>Login</Text>
+            </View>
+
+          </View>
+      </ImageBackground>      
     );
   }
 }
@@ -113,13 +121,15 @@ const styles = StyleSheet.create({
   txtInput:{
     width:300,
     height:60,
-    margin:10,
-    padding:10,
+    margin:6,
+    fontSize:16,
+    paddingHorizontal:20,
     backgroundColor:'#fff',
-    borderRadius:10,
+    borderRadius:35,
   },
   btnForm:{
     width:300,
+    marginTop:10,
     height:60,
     alignItems:'center',
     justifyContent:'center',
@@ -130,6 +140,19 @@ const styles = StyleSheet.create({
   btnText:{
     color:'#fff',
     fontSize:22,
+  },
+  signupField:{
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row',
+  },
+  registerText:{
+    color:'rgba(255,255,255,0.6)',
+    paddingEnd:5,
+  },
+  registerButton:{
+    color:'#fff',
+    fontWeight:'500',
   }
 });
 
