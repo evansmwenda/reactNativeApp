@@ -12,9 +12,7 @@ class HomeScreen extends Component{
     static navigationOptions = {
       header: null,
     }
-     goToRegister = () => {
-        Actions.register()
-     }
+
     render(){ 
       return (
           //add code here

@@ -4,10 +4,12 @@ import {
     View,
     ImageBackground,
     StyleSheet,
+    AsyncStorage,
 } from 'react-native';
 import { TextInput, TouchableHighlight, ScrollView } from 'react-native-gesture-handler';
 import bgImage from '../images/background7.jpeg';
 import API from '../constants/endpoints';
+import { Actions } from 'react-native-router-flux';
 
 
 const LOGIN_API= 'https://skytoptrial.000webhostapp.com/functions/User/login2.php';
@@ -23,6 +25,22 @@ class RegisterScreen extends Component {
       userAddress:'',
     }
   }
+
+  retrieveUsername = async() =>{
+    try {
+      const value = await AsyncStorage.getItem('userName');
+      if(value !== null){
+        alert("hello "+value);
+      }
+    } catch (error) {
+      //an error occurred
+    }
+  }
+
+  goToLogin = () =>{
+    Actions.login();
+  }
+
   static navigationOptions = {
     title: 'Raashin',
     headerRight: <View />
@@ -102,7 +120,7 @@ class RegisterScreen extends Component {
 
             <View style={styles.signupField}>
               <Text style={styles.registerText}>Already have an account?</Text>
-              <Text style={styles.registerButton}>Login</Text>
+              <Text style={styles.registerButton} onPress={this.retrieveUsername}>Login</Text>
             </View>
 
           </View>

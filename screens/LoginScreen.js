@@ -4,13 +4,13 @@ import {
     View,
     ImageBackground,
     StyleSheet,
-    ActivityIndicator,
+    AsyncStorage,
 } from 'react-native';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import bgImage from '../images/background6.jpeg';
 import Spinner from 'react-native-loading-spinner-overlay';
 import API from '../constants/endpoints';
-
+import { Actions } from 'react-native-router-flux';
 
 class LoginScreen extends Component{
   constructor(props){
@@ -21,19 +21,20 @@ class LoginScreen extends Component{
       loading:false,
     }
   }
+  goToRegister = () =>{
+    Actions.register();
+  }
 
-  
-  // componentDidMount() {
-  //   //Setting a timer to show the spinner demo in every 3 second
-  //   setInterval(() => {
-  //     this.setState({
-  //       //change the state of the laoding in every 3 second
-  //       loading: !this.state.loading,
-  //     });
-  //   }, 3000);
-  // }
+  componentDidMount = () => AsyncStorage.getItem('userName').then((value) => this.setState({ 'userName': value }))
 
-
+  setName = async(value) =>{
+    try {
+      await AsyncStorage.setItem('userName', value);
+      this.setState({ 'userName': value });
+    } catch (error) {
+      //error saving data
+    }
+  }
   
 
     loginUser = async() => {
@@ -85,7 +86,7 @@ class LoginScreen extends Component{
               <TextInput 
               placeholder={'Email/Username'} 
               style={styles.txtInput}
-              onChangeText={userName => this.setState({userName})}/>
+              onChangeText={this.setName}/>
   
               <TextInput 
               placeholder={'Password'} 
@@ -101,7 +102,7 @@ class LoginScreen extends Component{
               </TouchableHighlight>
               <View style={styles.signupField}>
                 <Text style={styles.registerText}>Don't have an account?</Text>
-                <Text style={styles.registerButton}>Register</Text>
+                <Text style={styles.registerButton} onPress={this.goToRegister}>Register</Text>
               </View>
               
   
