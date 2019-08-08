@@ -5,6 +5,7 @@ import {
     ImageBackground,
     StyleSheet,
     AsyncStorage,
+    ToastAndroid,
 } from 'react-native';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import bgImage from '../images/background6.jpeg';
@@ -35,6 +36,22 @@ class LoginScreen extends Component{
       //error saving data
     }
   }
+
+//   SignMeOut = async()=>{
+//     try{
+//        await AsyncStorage.removeItem('userID');
+//       this.getTaskerID();
+//       this.nav();
+     
+//     }catch(error){
+//      console.log('error clearing userID and Token'+error)
+//     }
+  
+//   }
+ 
+//   nav=()=>{  
+//    Actions.login();
+//  }
   
 
     loginUser = async() => {
@@ -58,11 +75,20 @@ class LoginScreen extends Component{
         });
         let responseJson = await response.json();
         this.setState({loading:false})
-        alert(responseJson.reply);//check if the status == true or false
+        // alert(responseJson.reply);//check if the status == true or false
+        if(responseJson.success){
+          //login successful
+          ToastAndroid.show(responseJson.reply, ToastAndroid.SHORT);
+          Actions.home();
+        }else{
+          //login not successful
+          ToastAndroid.show(responseJson.reply, ToastAndroid.SHORT);
+        }
+        
       } catch(error){
         this.setState({loading:false})
         console.error(error);
-        alert("error");
+        ToastAndroid.show("An error occurred, please try again", ToastAndroid.SHORT);
       }
     }
     render(){
