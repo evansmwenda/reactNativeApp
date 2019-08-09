@@ -6,6 +6,7 @@ import {
     StyleSheet,
     AsyncStorage,
     ToastAndroid,
+    ActivityIndicator,
 } from 'react-native';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 import bgImage from '../images/background6.jpeg';
@@ -52,9 +53,13 @@ class LoginScreen extends Component{
 //   nav=()=>{  
 //    Actions.login();
 //  }
+
   
 
     loginUser = async() => {
+      //TODO:display dialog here
+      this.setState({loading:true})
+      
       //get the field data
       const {userName} = this.state;
       const {userPassword} = this.state;
@@ -78,6 +83,7 @@ class LoginScreen extends Component{
         // alert(responseJson.reply);//check if the status == true or false
         if(responseJson.success){
           //login successful
+          this.setState({loading:false})
           ToastAndroid.show(responseJson.reply, ToastAndroid.SHORT);
           Actions.home();
         }else{
@@ -92,6 +98,10 @@ class LoginScreen extends Component{
       }
     }
     render(){
+      // <Text>{!this.state.loading?"LOGIN":(<View style={styles.loadingBarContainer} ><ActivityIndicator style={styles.loadingBar}/></View>)}</Text>
+      
+
+
       if(this.state.loading){
         //if true->display the spinner
         return(
@@ -181,6 +191,14 @@ class LoginScreen extends Component{
     registerButton:{
       color:'#fff',
       fontWeight:'500',
+    },
+    loadingBarContainer:{
+      width:100,
+      height:100,
+      backgroundColor:'red',
+    },
+    loadingBar:{
+      color:'#00ff00'
     }
   });
 

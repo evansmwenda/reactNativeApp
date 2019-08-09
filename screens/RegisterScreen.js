@@ -5,6 +5,7 @@ import {
     ImageBackground,
     StyleSheet,
     AsyncStorage,
+    Keyboard,
 } from 'react-native';
 import { TextInput, TouchableHighlight, ScrollView } from 'react-native-gesture-handler';
 import bgImage from '../images/background7.jpeg';
@@ -25,6 +26,31 @@ class RegisterScreen extends Component {
       userAddress:'',
     }
   }
+
+  componentDidMount() {
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this._keyboardDidShow,
+    );
+    this.keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      this._keyboardDidHide,
+    );
+  }
+
+  componentWillUnmount() {
+    this.keyboardDidShowListener.remove();
+    this.keyboardDidHideListener.remove();
+  }
+
+  _keyboardDidShow() {
+    alert('Keyboard Shown');
+  }
+
+  _keyboardDidHide() {
+    alert('Keyboard Hidden');
+  }
+
 
   retrieveUsername = async() =>{
     try {
@@ -87,7 +113,8 @@ class RegisterScreen extends Component {
             <TextInput 
             placeholder={'Email/Username'} 
             style={styles.txtInput}
-            onChangeText={userName => this.setState({userName})}/>
+            onChangeText={userName => this.setState({userName})}
+            onSubmitEditing={Keyboard.dismiss}/>
 
             <TextInput 
             placeholder={'Phone Number'} 
